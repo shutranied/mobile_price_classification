@@ -7,13 +7,7 @@ from utils.visualization import (
     plot_battery_power_distribution,
     plot_three_g_support
 )
-from preprocessing.preprocessing import (
-    split_features_target,
-    scale_features,
-    split_train_test
-)
-from models.ml_models import train_logistic_regression, train_svc_model, save_model
-from evaluation.evaluation import evaluate_model, plot_confusion_matrix
+from models.mobile_price_classifier import MobilePriceClassifier
 
 
 def main():
@@ -29,35 +23,56 @@ def main():
     plot_battery_power_distribution(df_train, TARGET_COLUMN)
     plot_three_g_support(df_train)
 
-    # Split features and target
-    X, y = split_features_target(df_train, TARGET_COLUMN)
-
-    # Scale features
-    X_scaled, scaler = scale_features(X)
-
-    # Split into training and testing sets
-    X_train, X_test, y_train, y_test = split_train_test(
-        X_scaled,
-        y,
+    # Create OOP classifier object
+    classifier = MobilePriceClassifier(
         test_size=TEST_SIZE,
-        random_state=RANDOM_STATE
+        random_state=RANDOM_STATE,
+        model_path=MODEL_PATH
     )
 
-    # Train Logistic Regression model
-    logistic_model = train_logistic_regression(X_train, y_train)
-    print("\nLogistic Regression Evaluation:")
-    evaluate_model(logistic_model, X_test, y_test)
-    plot_confusion_matrix(logistic_model, X_test, y_test)
+    # Prepare data
+    classifier.prepare_data(df_train, TARGET_COLUMN)
 
-    # Train SVC model
-    svc_model = train_svc_model(X_train, y_train)
-    print("\nSupport Vector Classifier Evaluation:")
-    evaluate_model(svc_model, X_test, y_test)
-    plot_confusion_matrix(svc_model, X_test, y_test)
+    # Train multiple models
+    classifier.train_models()
 
-    # Save final model
-    save_model(svc_model, MODEL_PATH)
-    print(f"\nModel saved successfully at {MODEL_PATH}")
+    # Evaluate and select best model
+    classifier.evaluate_models()
+
+    # Save confusion matrix
+    classifier.plot_best_confusion_matrix()
+
+    # Save evaluation report
+    classifier.save_evaluation_report()
+
+    # Save best model
+    classifier.save_best_model()
+
+    # Example single phone prediction
+    sample_phone = {
+        "battery_power": 1500,
+        "blue": 1,
+        "clock_speed": 2.2,
+        "dual_sim": 1,
+        "fc": 8,
+        "four_g": 1,
+        "int_memory": 64,
+        "m_dep": 0.5,
+        "mobile_wt": 150,
+        "n_cores": 8,
+        "pc": 12,
+        "px_height": 1200,
+        "px_width": 1920,
+        "ram": 4096,
+        "sc_h": 15,
+        "sc_w": 7,
+        "talk_time": 20,
+        "three_g": 1,
+        "touch_screen": 1,
+        "wifi": 1
+    }
+
+    classifier.predict_single_phone(sample_phone)
 
 
 if __name__ == "__main__":

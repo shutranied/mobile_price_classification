@@ -1,0 +1,22 @@
+=== Mobile Price Classification Report ===
+
+Best Model: Logistic Regression
+Best Accuracy: 0.9175
+
+Price Range Meaning:
+0 = Cheap / Low Cost
+1 = Medium Cost
+2 = Expensive / High Cost
+3 = Very Expensive
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.96      0.97      0.97       100
+           1       0.87      0.90      0.88       100
+           2       0.92      0.81      0.86       100
+           3       0.93      0.99      0.96       100
+
+    accuracy                           0.92       400
+   macro avg       0.92      0.92      0.92       400
+weighted avg       0.92      0.92      0.92       400
