@@ -18,7 +18,7 @@ def train_svc_model(X_train, y_train):
     """
     model = SVC()
     model.fit(X_train, y_train)
-      return model
+    return model
 
 
 def save_model(model, file_path):
