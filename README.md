@@ -59,15 +59,10 @@ The `price_range` target column has four classes:
 
 ```text
 mobile_price_classification/
-│── README.md
-│── config.py
-│── main.py
-│── requirements.txt
-│
 ├── data/
-│   ├── train.csv
+│   ├── data_loader.py
 │   ├── test.csv
-│   └── data_loader.py
+│   └── train.csv
 │
 ├── evaluation/
 │   └── evaluation.py
@@ -78,19 +73,25 @@ mobile_price_classification/
 │   └── mobile_price_model.pkl
 │
 ├── outputs/
-│   ├── class_balance.png
-│   ├── ram_distribution.png
 │   ├── battery_power_distribution.png
-│   ├── three_g_support.png
 │   ├── best_model_confusion_matrix.png
-│   └── model_report.txt
+│   ├── class_balance.png
+│   ├── model_report.txt
+│   ├── ram_distribution.png
+│   └── three_g_support.png
 │
 ├── preprocessing/
 │   └── preprocessing.py
 │
-└── utils/
-    ├── data_exploration.py
-    └── visualization.py
+├── utils/
+│   ├── data_exploration.py
+│   └── visualization.py
+│
+├── .gitignore
+├── config.py
+├── main.py
+├── README.md
+└── requirements.txt
 ```
 
 ---
