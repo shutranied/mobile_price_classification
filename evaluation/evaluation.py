@@ -97,7 +97,7 @@ def save_evaluation_report(
 
     y_pred = model.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
-    report = classification_report(y_test, y_pred)
+    report = classification_report(y_test, y_pred, zero_division=0)
 
     with open(output_path, "w", encoding="utf-8") as file:
         file.write("=== Mobile Price Classification Model Report ===\n\n")
