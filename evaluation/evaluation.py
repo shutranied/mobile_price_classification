@@ -37,7 +37,7 @@ def evaluate_model(model: Any, X_test: Any, y_test: Any) -> Tuple[float, Any]:
     print(f"{accuracy:.4f}")
 
     print("\nClassification Report:")
-    print(classification_report(y_test, y_pred))
+    print(classification_report(y_test, y_pred, zero_division=0))
 
     return accuracy, y_pred
 
