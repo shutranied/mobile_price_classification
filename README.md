@@ -83,6 +83,13 @@ mobile_price_classification/
 ├── preprocessing/
 │   └── preprocessing.py
 │
+├── tests/
+│   ├── __init__.py
+│   ├── test_data_loader.py
+│   ├── test_preprocessing.py
+│   ├── test_ml_models.py
+│   └── test_evaluation.py
+│
 ├── utils/
 │   ├── data_exploration.py
 │   └── visualization.py
@@ -210,8 +217,11 @@ This file contains earlier model-related helper functions, including:
 
 - Training Logistic Regression
 - Training Support Vector Classifier
+- Training Random Forest Classifier
+- Comparing model performance
 - Saving a model
 - Loading a model
+- Predicting a single mobile phone price range
 
 Although the latest workflow mainly uses the OOP class in `mobile_price_classifier.py`, this file is still part of the modular project structure.
 
@@ -283,6 +293,23 @@ The workflow in `main.py` includes:
 10. Saving the evaluation report
 11. Saving the best model
 12. Predicting the price range of a sample mobile phone
+
+---
+
+### 4.10 `tests/`
+
+This folder contains unit test files used to check whether the main project modules work correctly.
+
+The test files are:
+
+```text
+test_data_loader.py
+test_preprocessing.py
+test_ml_models.py
+test_evaluation.py
+```
+
+These tests are included to verify the reliability and correctness of the code. They support the coursework requirement for testing and help ensure that the project modules can be checked independently.
 
 ---
 
@@ -447,6 +474,8 @@ The saved model package contains:
 
 ## 10. How to Run the Project
 
+This project is designed to run in GitHub Codespaces. After opening the repository in Codespaces, install the required libraries and run the project from the terminal.
+
 Install the required libraries:
 
 ```bash
@@ -463,6 +492,12 @@ If using Python 3:
 
 ```bash
 python3 main.py
+```
+
+Run the unit tests:
+
+```bash
+python -m pytest tests
 ```
 
 ---
