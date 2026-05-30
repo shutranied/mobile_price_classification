@@ -1,4 +1,5 @@
 import pandas as pd
+import pytest
 
 from preprocessing.preprocessing import (
     scale_train_test_features,
@@ -25,6 +26,22 @@ def test_split_features_target():
     assert list(X.columns) == ["battery_power", "ram"]
     assert y.tolist() == [3, 2, 3, 1]
     assert X.shape == (4, 2)
+
+
+def test_split_features_target_missing_column():
+    """
+    Test that split_features_target() raises ValueError
+    when the target column is missing.
+    """
+    data = pd.DataFrame(
+        {
+            "battery_power": [1500, 1200],
+            "ram": [4096, 2048],
+        }
+    )
+
+    with pytest.raises(ValueError):
+        split_features_target(data, "price_range")
 
 
 def test_split_train_test():
