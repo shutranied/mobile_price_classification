@@ -95,9 +95,9 @@ mobile_price_classification/
 │   └── visualization.py
 │
 ├── .gitignore
+├── README.md
 ├── config.py
 ├── main.py
-├── README.md
 └── requirements.txt
 ```
 
