@@ -1,3 +1,11 @@
+"""
+Configuration file for the Mobile Price Classification project.
+
+This file stores important constants such as dataset paths,
+model settings, and output file paths. Keeping these values here
+makes the project easier to maintain and update.
+"""
+
 # File paths
 TRAIN_DATA_PATH = "data/train.csv"
 TEST_DATA_PATH = "data/test.csv"
