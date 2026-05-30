@@ -54,6 +54,7 @@ def test_save_evaluation_report_creates_file(tmp_path):
     )
 
     assert report_path.exists()
+    assert report_path.stat().st_size > 0
 
     report_content = report_path.read_text()
 
@@ -86,3 +87,4 @@ def test_plot_confusion_matrix_creates_image_file(tmp_path):
     )
 
     assert image_path.exists()
+    assert image_path.stat().st_size > 0
