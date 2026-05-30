@@ -28,7 +28,7 @@ def display_basic_info(data: pd.DataFrame) -> None:
         raise TypeError("Input data must be a pandas DataFrame.")
 
     print("Dataset Information:")
-    print(data.info())
+    data.info()
 
     print("\nDataset Description:")
     print(data.describe())
