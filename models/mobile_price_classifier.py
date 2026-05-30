@@ -8,7 +8,7 @@ prediction, confusion matrix saving, evaluation report saving, and model saving.
 
 import pickle
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -178,7 +178,7 @@ class MobilePriceClassifier:
 
             print(f"\n{model_name}")
             print(f"Accuracy: {accuracy:.4f}")
-            print(classification_report(self.y_test, y_pred))
+            print(classification_report(self.y_test, y_pred, zero_division=0))
 
             if accuracy > self.best_accuracy:
                 self.best_accuracy = accuracy
@@ -281,7 +281,7 @@ class MobilePriceClassifier:
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
         y_pred = self.best_model.predict(self.X_test_scaled)
-        report = classification_report(self.y_test, y_pred)
+        report = classification_report(self.y_test, y_pred, zero_division=0)
 
         with open(output_path, "w", encoding="utf-8") as file:
             file.write("=== Mobile Price Classification Report ===\n\n")
