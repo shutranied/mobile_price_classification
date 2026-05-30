@@ -315,7 +315,7 @@ These tests are included to verify the reliability and correctness of the code. 
 
 ## 5. Object-Oriented Programming Implementation
 
-Object-Oriented Programming was added to improve the structure and reusability of the project.
+Object-Oriented Programming was added to improve the structure, reusability, and maintainability of the project.
 
 The main OOP class is:
 
@@ -323,7 +323,23 @@ The main OOP class is:
 MobilePriceClassifier
 ```
 
-This class groups the machine learning workflow into one object. Instead of writing all processes separately in `main.py`, the class organizes related functions into methods.
+This class groups the machine learning workflow into one object. Instead of writing all processes separately in `main.py`, the class organizes related functions into methods such as:
+
+```python
+prepare_data()
+train_models()
+evaluate_models()
+predict_single_phone()
+plot_best_confusion_matrix()
+save_evaluation_report()
+save_best_model()
+```
+
+The class also stores important attributes such as the scaler, trained models, best model, accuracy results, feature columns, and price labels.
+
+Abstraction is applied because `main.py` only calls simple method names, while the detailed implementation is handled inside the `MobilePriceClassifier` class.
+
+Inheritance is not strongly implemented in this project because only one main classifier class is required. Therefore, this project focuses mainly on class design, object creation, methods, modularity, and abstraction.
 
 The OOP implementation makes the project:
 
@@ -474,7 +490,7 @@ The saved model package contains:
 
 ## 10. How to Run the Project
 
-This project is designed to run in GitHub Codespaces. After opening the repository in Codespaces, install the required libraries and run the project from the terminal.
+This project is designed to run in GitHub Codespaces. After opening the repository in Codespaces, install the required libraries first.
 
 Install the required libraries:
 
@@ -482,22 +498,22 @@ Install the required libraries:
 pip install -r requirements.txt
 ```
 
-Run the project:
+Run the unit tests:
+
+```bash
+python -m pytest tests
+```
+
+Run the main project workflow:
 
 ```bash
 python main.py
 ```
 
-If using Python 3:
+If `python` does not work, use:
 
 ```bash
 python3 main.py
-```
-
-Run the unit tests:
-
-```bash
-python -m pytest tests
 ```
 
 ---
