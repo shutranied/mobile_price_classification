@@ -192,10 +192,10 @@ def predict_single_phone(
     prediction = model.predict(phone_scaled)
 
     price_mapping = {
-        0: "Low Cost",
+        0: "Cheap / Low Cost",
         1: "Medium Cost",
-        2: "High Cost",
-        3: "Very High Cost",
+        2: "Expensive / High Cost",
+        3: "Very Expensive",
     }
 
     predicted_label = price_mapping.get(prediction[0], "Unknown")
